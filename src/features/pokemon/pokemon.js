@@ -1,0 +1,23 @@
+import * as React from 'react';
+import { useGetPokemonByNameQuery } from '../../services/pokemon';
+
+const Pokemon = () => {
+  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+
+  return (
+    <div className={'App'}>
+      {error ? (
+        <>Oh no, pokemon</>
+      ) : isLoading ? (
+        <>Loading...</>
+      ) : data ? (
+        <>
+          <h3>{data.species.name}</h3>
+          <img src={data.sprites.front_shiny} alt={data.species.name} />
+        </>
+      ) : null}
+    </div>
+  );
+};
+
+export { Pokemon };
